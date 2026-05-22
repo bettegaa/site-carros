@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garagem Clássica | Carros Antigos</title>
+    <style>
+        /* Reset básico e tipografia */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --cor-principal: #2c2520; /* Marrom escuro/Carvão */
+            --cor-detalhe: #8c6239;    /* Bronze/Couro vintage */
+            --cor-fundo: #f9f6f0;      /* Bege claro/Marfim */
+            --cor-texto: #333333;
+            --cor-branca: #ffffff;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho / Navbar */
+        header {
+            background-color: var(--cor-principal);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            color: var(--cor-branca);
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--cor-detalhe);
+        }
+
+        nav a {
+            color: var(--cor-branca);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-detalhe);
+        }
+
+        /* Seção Hero (Destaque Principal) */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--cor-branca);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            background-color: var(--cor-detalhe);
+            color: var(--cor-branca);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #a07348;
+            transform: translateY(-2px);
+        }
+
+        /* Seção de Destaques (Cards) */
+        .features {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--cor-principal);
+            position: relative;
+        }
+
+        .features h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--cor-detalhe);
+            margin: 10px auto 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--cor-branca);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: var(--cor-principal);
+        }
+
+        /* Seção de Captura (Formulário) */
+        .cta-form {
+            background-color: var(--cor-principal);
+            color: var(--cor-branca);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .cta-form h2 {
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .cta-form p {
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-container input[type="email"] {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-container button {
+            background-color: var(--cor-detalhe);
+            color: var(--cor-branca);
+            border: none;
+            padding: 0 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #a07348;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1a1613;
+            color: #777;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            .form-container { flex-direction: column; }
+            .form-container button { padding: 15px; }
+            nav { display: none; } /* Simplificação para o exemplo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">GARAGEM<span>CLÁSSICA</span></div>
+        <nav>
+            <a href="#modelos">Modelos</a>
+            <a href="#historia">História</a>
+            <a href="#contato">Newsletter</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>A Arte sobre Rodas</h1>
+        <p>Mais do que engenharia, uma herança cultural. Venha reviver a era de ouro do design automobilístico e conhecer as lendas que moldaram as estradas.</p>
+        <a href="#modelos" class="btn">Explorar Clássicos</a>
+    </section>
+
+    <!-- Seção de Modelos / Destaques -->
+    <section class="features" id="modelos">
+        <h2>Ícones Atemporais</h2>
+        <div class="grid">
+            
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=600');"></div>
+                <div class="card-content">
+                    <h3>Design Italiano</h3>
+                    <p>Linhas fluidas, motores de alta performance e a sofisticação que transformou carros em verdadeiras obras de arte colecionáveis.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=600');"></div>
+                <div class="card-content">
+                    <h3>Puro Sangue Europeu</h3>
+                    <p>A engenharia de precisão combinada ao luxo discreto dos esportivos que dominaram as pistas e o imaginário nas décadas de 60 e 70.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600');"></div>
+                <div class="card-content">
+                    <h3>Muscle Cars Americanos</h3>
+                    <p>A força bruta dos motores V8, o ronco inconfundível e a cultura de liberdade que marcou uma geração inteira de apaixonados por velocidade.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Seção de Captura / CTA -->
+    <section class="cta-form" id="contato">
+        <h2>Entre para o Clube</h2>
+        <p>Receba conteúdos exclusivos sobre restauração, histórias de bastidores e o mercado de carros antigos direto no seu e-mail.</p>
+        <form class="form-container" onsubmit="alert('Inscrição realizada com sucesso! (Simulação)'); return false;">
+            <input type="email" placeholder="Digite seu melhor e-mail" required>
+            <button type="submit">Inscrever-se</button>
+        </form>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 Garagem Clássica. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
